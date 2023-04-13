@@ -1,0 +1,11 @@
+C:\Users\325L-01\Desktop\Колупае\Chart\bin\Debug\Chart.exe.config
+C:\Users\325L-01\Desktop\Колупае\Chart\bin\Debug\Chart.exe
+C:\Users\325L-01\Desktop\Колупае\Chart\bin\Debug\Chart.pdb
+C:\Users\325L-01\Desktop\Колупае\Chart\obj\Debug\Chart.csproj.AssemblyReference.cache
+C:\Users\325L-01\Desktop\Колупае\Chart\obj\Debug\Chart.csproj.SuggestedBindingRedirects.cache
+C:\Users\325L-01\Desktop\Колупае\Chart\obj\Debug\Chart.Form1.resources
+C:\Users\325L-01\Desktop\Колупае\Chart\obj\Debug\Chart.Properties.Resources.resources
+C:\Users\325L-01\Desktop\Колупае\Chart\obj\Debug\Chart.csproj.GenerateResource.cache
+C:\Users\325L-01\Desktop\Колупае\Chart\obj\Debug\Chart.csproj.CoreCompileInputs.cache
+C:\Users\325L-01\Desktop\Колупае\Chart\obj\Debug\Chart.exe
+C:\Users\325L-01\Desktop\Колупае\Chart\obj\Debug\Chart.pdb
