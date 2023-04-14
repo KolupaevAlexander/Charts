@@ -8,6 +8,8 @@ namespace Chart
 {
     internal class Cosinus:Function
     {
+        public Cosinus(double a, double b, double c) : base(a, b, c) { }
+        
         override public double[] Draw(int left, int right)
         {
             double[] chart = new double[right-left+1];

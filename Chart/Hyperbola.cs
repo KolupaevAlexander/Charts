@@ -8,6 +8,7 @@ namespace Chart
 {
     internal class Hyperbola:Function
     {
+        public Hyperbola(double a, double b, double c) : base(a, b, c) { }
         override public double[] Draw(int left, int right)
         {
             double[] chart = new double[right-left+1];

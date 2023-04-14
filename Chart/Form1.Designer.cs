@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea5 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend5 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             this.Graf = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.CleanChart = new System.Windows.Forms.Button();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -69,11 +69,11 @@
             // 
             // Graf
             // 
-            chartArea2.Name = "ChartArea1";
-            this.Graf.ChartAreas.Add(chartArea2);
+            chartArea5.Name = "ChartArea1";
+            this.Graf.ChartAreas.Add(chartArea5);
             this.Graf.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend2.Name = "Legend1";
-            this.Graf.Legends.Add(legend2);
+            legend5.Name = "Legend1";
+            this.Graf.Legends.Add(legend5);
             this.Graf.Location = new System.Drawing.Point(0, 0);
             this.Graf.Name = "Graf";
             this.Graf.Size = new System.Drawing.Size(800, 611);
@@ -166,6 +166,7 @@
             this.leftBorder.Name = "leftBorder";
             this.leftBorder.Size = new System.Drawing.Size(100, 20);
             this.leftBorder.TabIndex = 3;
+            this.leftBorder.TextChanged += new System.EventHandler(this.leftBorder_TextChanged);
             // 
             // rightBorder
             // 
@@ -173,34 +174,34 @@
             this.rightBorder.Name = "rightBorder";
             this.rightBorder.Size = new System.Drawing.Size(100, 20);
             this.rightBorder.TabIndex = 4;
+            this.rightBorder.TextChanged += new System.EventHandler(this.rightBorder_TextChanged);
             // 
             // coeffA
             // 
-            this.coeffA.Enabled = false;
             this.coeffA.Location = new System.Drawing.Point(43, 183);
             this.coeffA.Name = "coeffA";
             this.coeffA.Size = new System.Drawing.Size(86, 20);
             this.coeffA.TabIndex = 5;
+            this.coeffA.TextChanged += new System.EventHandler(this.coeffA_TextChanged);
             // 
             // coeffB
             // 
-            this.coeffB.Enabled = false;
             this.coeffB.Location = new System.Drawing.Point(43, 209);
             this.coeffB.Name = "coeffB";
             this.coeffB.Size = new System.Drawing.Size(86, 20);
             this.coeffB.TabIndex = 6;
+            this.coeffB.TextChanged += new System.EventHandler(this.coeffB_TextChanged);
             // 
             // coeffC
             // 
-            this.coeffC.Enabled = false;
             this.coeffC.Location = new System.Drawing.Point(43, 235);
             this.coeffC.Name = "coeffC";
             this.coeffC.Size = new System.Drawing.Size(86, 20);
             this.coeffC.TabIndex = 7;
+            this.coeffC.TextChanged += new System.EventHandler(this.coeffC_TextChanged);
             // 
             // coeffR
             // 
-            this.coeffR.Enabled = false;
             this.coeffR.Location = new System.Drawing.Point(43, 261);
             this.coeffR.Name = "coeffR";
             this.coeffR.Size = new System.Drawing.Size(86, 20);

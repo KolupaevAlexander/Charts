@@ -27,8 +27,8 @@ namespace Chart
 
         private void DrawHyperbola(string name, double A, int left, int right)
         {
-            Hyperbola chart = new Hyperbola();
-            chart.A = A;
+            Hyperbola chart = new Hyperbola(A, 0, 0);
+           
             var graf = chart.Draw(left,right);
 
             Graf.Series.Add(name+"leftPart");
@@ -45,9 +45,8 @@ namespace Chart
                 Graf.Series[name + "rightPart"].Points.AddXY(i, graf[i - left]);
             }
         }
-        private void DrawParabola(string name, double A, double B, double C, int left, int right)
+        private void DrawABC(string name, double A, double B, double C, int left, int right, Function chart)
         {
-            Parabola chart = new Parabola();
             chart.A = A;
             chart.B = B;
             chart.C = C;
@@ -59,35 +58,7 @@ namespace Chart
             {
                 Graf.Series[name].Points.AddXY(i, graf[i - left]);
             }
-        }
-        private void DrawSinus(string name, double A, double B, int left, int right) 
-        { 
-            Sinus chart = new Sinus();
-            chart.A = A;
-            chart.B = B;
-
-            var graf = chart.Draw(left, right);
-            Graf.Series.Add(name);
-            Graf.Series[name].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            for (int i = left; i <= right; i++)
-            {
-                Graf.Series[name].Points.AddXY(i, graf[i - left]);
-            }
-        }
-        private void DrawCosinus(string name, double A, double B, int left, int right)
-        {
-            Cosinus chart = new Cosinus();
-            chart.A = A;
-            chart.B = B;
-
-            var graf = chart.Draw(left, right);
-            Graf.Series.Add(name);
-            Graf.Series[name].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            for (int i = left; i <= right; i++)
-            {
-                Graf.Series[name].Points.AddXY(i, graf[i - left]);
-            }
-        }
+        }     
         private void DrawCircle(string name, double r)
         {
             /* Circle chart = new Circle();
@@ -113,20 +84,6 @@ namespace Chart
                 //Graf.Series[name].Points.AddXY(i, Math.Sqrt((Math.Pow(r, 2) - Math.Pow(i, 2))));
             }
         }
-        private void DrawCube(string name, double A, double B, int left, int right)
-        {
-            Cube chart = new Cube();
-            chart.A = A;
-            chart.B = B;
-
-            var graf = chart.Draw(left, right);
-            Graf.Series.Add(name);
-            Graf.Series[name].ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            for (int i = left; i < right; i++)
-            {
-                Graf.Series[name].Points.AddXY(i, graf[i - left]);
-            }
-        }
         private bool IsRightEnter()
         {
             int left = 1;
@@ -137,17 +94,34 @@ namespace Chart
 
             return haveName && haveBorders && rightBorders;
         }
+
         private void Submit_Click(object sender, EventArgs e)
         {
-            double A=0;
+            
+        }
+        private void Changers()
+        {
+            if (Graf.Series.Count == 1)
+            {
+                Series s = Graf.Series[chartName.Text];
+                Graf.Series.Remove(s);
+            }
+            if (Graf.Series.Count == 2)
+            {
+                Series sl = Graf.Series[chartName.Text + "leftPart"];
+                Series sr = Graf.Series[chartName.Text + "rightPart"];
+                Graf.Series.Remove(sl); Graf.Series.Remove(sr);
+            }
+            Function chart;
+            double A = 0;
             bool haveCooficientA = coeffA.Text != "" && Double.TryParse(coeffA.Text, out A);
-            double B=0;
+            double B = 0;
             bool haveCooficientB = coeffB.Text != "" && Double.TryParse(coeffB.Text, out B);
-            double C=0;
+            double C = 0;
             bool haveCooficientC = coeffC.Text != "" && Double.TryParse(coeffC.Text, out C);
             double R = 0;
             bool haveCooficientR = coeffR.Text != "" && Double.TryParse(coeffR.Text, out R);
-            
+
             int left = 1;
             int right = -1;
             Int32.TryParse(leftBorder.Text, out left);
@@ -157,71 +131,60 @@ namespace Chart
             switch (comboBox1.SelectedIndex)
             {
                 case 0:
+                    chart = new Cosinus(A, B, C);
                     if (rightEnter && haveCooficientA && haveCooficientB)
-                        DrawCosinus(chartName.Text, A, B, left, right);
+                        DrawABC(chartName.Text, A, B, C, left, right, chart);
                     break;
                 case 1:
+                    chart = new Sinus(A, B, C);
                     if (rightEnter && haveCooficientA && haveCooficientB)
-                        DrawSinus(chartName.Text, A, B, left, right);
+                        DrawABC(chartName.Text, A, B, C, left, right, chart);
                     break;
                 case 2:
-                    if (rightEnter && haveCooficientA && haveCooficientB && haveCooficientC)
-                        DrawParabola(chartName.Text, A, B, C, left, right);
+                    chart = new Parabola(A, B, C);
+                    if (rightEnter && haveCooficientA && haveCooficientB && haveCooficientC) ;
+                    DrawABC(chartName.Text, A, B, C, left, right, chart);
                     break;
                 case 3:
-                    if (rightEnter && haveCooficientA && A!=0)
+                    if (rightEnter && haveCooficientA && A != 0)
                         DrawHyperbola(chartName.Text, A, left, right);
                     break;
                 case 4:
+                    chart = new Cube(A, B, C);
                     if (rightEnter && haveCooficientA && haveCooficientB)
-                        DrawCube(chartName.Text, A, B, left, right);
+                        DrawABC(chartName.Text, A, B, C, left, right, chart);
                     break;
                 case 5:
-                    if (rightEnter && haveCooficientR)
-                        DrawCircle(chartName.Text, R);
+                    if (rightEnter)
+                        DrawCircle(chartName.Text, A);
                     break;
                 default:
                     break;
             }
-            chartName.Text = "";
         }
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            switch (comboBox1.SelectedIndex)
-            {
-                case 0:
-                case 1:
-                case 4:
-                    coeffA.Enabled = true;
-                    coeffB.Enabled = true;
-                    coeffC.Enabled = false;
-                    coeffR.Enabled = false;
-                    break;
-                case 3:
-                    coeffA.Enabled = true;
-                    coeffB.Enabled = false;
-                    coeffC.Enabled = false;
-                    coeffR.Enabled = false;
-                    break;
-                case 2:
-                    coeffA.Enabled = true;
-                    coeffB.Enabled = true;
-                    coeffC.Enabled = true;
-                    coeffR.Enabled = false;
-                    break;
-                case 5:
-                    coeffA.Enabled = false;
-                    coeffB.Enabled = false;
-                    coeffC.Enabled = false;
-                    coeffR.Enabled = true;
-                    break;
-                default:
-                    coeffA.Enabled = false;
-                    coeffB.Enabled = false;
-                    coeffC.Enabled = false;
-                    coeffR.Enabled = false;
-                    break;
-            }
+            Changers();
+        }
+        private void coeffA_TextChanged(object sender, EventArgs e)
+        {
+            Changers();
+        }
+        private void coeffB_TextChanged(object sender, EventArgs e)
+        {
+            Changers();
+        }
+        private void leftBorder_TextChanged(object sender, EventArgs e)
+        {
+            Changers();
+        }
+        private void rightBorder_TextChanged(object sender, EventArgs e)
+        {
+            Changers();
+        }
+        private void coeffC_TextChanged(object sender, EventArgs e)
+        {
+            Changers();
         }
     }
 }

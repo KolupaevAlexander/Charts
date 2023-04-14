@@ -8,6 +8,7 @@ namespace Chart
 {
     internal class Circle:Function
     {
+        public Circle(double a, double b, double c) : base(a, b, c) { }
         double r;
         public double R { get { return R; } set { R = value; } }
         override public double[] Draw(int left, int right)
